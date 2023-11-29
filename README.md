@@ -1,4 +1,4 @@
-# Скрипт "Преобразование ссылок и Счет кликов по ссылкам"
+# Скрипт "Преобразователь ссылок"
 
 Данный скрипт помогает сократить ссылку, а так же посчитать количество кликов на нее 
 используя сервис [bitly.com](https://bitly.com/pages/landing/bringing-us-all-a-bit-closer?gad_source=1&gclid=Cj0KCQiA35urBhDCARIsAOU7Qwncdg_Bi9AUFGTNgxNPr0voSbsbOGMp9nYTecd2ZCE9F4U1Q3iaYVcaAshvEALw_wcB) через терминал на вашем ПК. У скрипта есть 2 функции:
@@ -9,7 +9,7 @@
 ## Подготовка к запуску скрипта
 
 Зарегистрируйтесь на сайте [bitly.com](https://bitly.com/pages/landing/bringing-us-all-a-bit-closer?gad_source=1&gclid=Cj0KCQiA35urBhDCARIsAOU7Qwncdg_Bi9AUFGTNgxNPr0voSbsbOGMp9nYTecd2ZCE9F4U1Q3iaYVcaAshvEALw_wcB)
-и получите access token для подключения к API по ссылке [TOKEN](https://bitly.com/a/sign_in?rd=/settings/integrations)
+, а так же получите access token для подключения к API по ссылке [TOKEN](https://bitly.com/a/sign_in?rd=/settings/integrations)
 
 В терминале, в корневой папке проекта создаем вирутальное окружение и устанавливаем
 требуемые библиотеки:
@@ -20,13 +20,13 @@ $ poetry install
 Так же требуется в файлe .env обозначить переменную виртульного окружения (ACCESS_TOKEN)
 и ввести полученный access_token для допуска к сервисному API
 
-![Screenshot]()
+![Screenshot](https://github.com/valhallajazzy/bitly_links/blob/main/pictures/ACCESS_TOKEN.png)
 
 ## Запуск скрипта
 
 В терминале, в корневой папке директории запустите скрипт:
 
 ```console
-$ python main.py
+$ python3 main.py
 ```
-![Screenshot]()
+![Screenshot](https://github.com/valhallajazzy/bitly_links/blob/main/pictures/RUNNING_THE_SCRIPT.png)
