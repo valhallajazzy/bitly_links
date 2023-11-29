@@ -4,7 +4,7 @@
 используя сервис [bitly.com](https://bitly.com/pages/landing/bringing-us-all-a-bit-closer?gad_source=1&gclid=Cj0KCQiA35urBhDCARIsAOU7Qwncdg_Bi9AUFGTNgxNPr0voSbsbOGMp9nYTecd2ZCE9F4U1Q3iaYVcaAshvEALw_wcB) через терминал на вашем ПК. У скрипта есть 2 функции:
 
 * При введении оригинальной ссылки скрипт ее сократит
-* При введении сокращенной ссылки скрипт выведет количество кликом на эту ссылку
+* При введении сокращенной ссылки скрипт выведет количество кликов по этой ссылке
 
 ## Подготовка к запуску скрипта
 
