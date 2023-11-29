@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 def shorten_link(link):
     try:
         token = os.getenv("ACCESS_TOKEN")
@@ -16,7 +17,7 @@ def shorten_link(link):
         bitlink = response.json().get('link')
         return bitlink
     except requests.exceptions.HTTPError:
-        print(f"Ошибка введенного url, проверьте корректность ссылки")
+        print("Ошибка введенного url, проверьте корректность ссылки")
 
 
 def count_clicks(link):
@@ -30,7 +31,7 @@ def count_clicks(link):
         clicks_count = response.json().get("total_clicks")
         return clicks_count
     except requests.exceptions.HTTPError:
-        print(f"Ошибка введенного url, проверьте корректность ссылки")
+        print("Ошибка введенного url, проверьте корректность ссылки")
 
 
 def is_bitlink(url=input("Введите ссылку: ")):
@@ -49,7 +50,5 @@ def is_bitlink(url=input("Введите ссылку: ")):
     return shorten_link(url)
 
 
-
-
-if __name__=='__main__':
+if __name__ == '__main__':
         print(is_bitlink())
