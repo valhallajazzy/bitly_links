@@ -6,49 +6,49 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def shorten_link(link):
-    try:
-        token = os.getenv("ACCESS_TOKEN")
-        url = "https://api-ssl.bitly.com/v4/bitlinks"
-        header = {"Authorization": f"Bearer {token}"}
-        payload = {"long_url": link}
-        response = requests.post(url, headers=header, json=payload)
-        response.raise_for_status()
-        bitlink = response.json().get('link')
-        return bitlink
-    except requests.exceptions.HTTPError:
-        print("Ошибка введенного url, проверьте корректность ссылки")
+def shorten_link(token, link):
+    url = "https://api-ssl.bitly.com/v4/bitlinks"
+    header = {"Authorization": f"Bearer {token}"}
+    payload = {"long_url": link}
+    response = requests.post(url, headers=header, json=payload)
+    response.raise_for_status()
+    bitlink = response.json().get('link')
+    return bitlink
 
 
-def count_clicks(link):
-    try:
-        parsed_link = urlsplit(link)
-        token = os.getenv("ACCESS_TOKEN")
-        url = f"https://api-ssl.bitly.com/v4/bitlinks/{parsed_link.netloc+parsed_link.path}/clicks/summary?unit=day&units=-1"
-        header = {"Authorization": f"Bearer {token}"}
-        response = requests.get(url, headers=header)
-        response.raise_for_status()
-        clicks_count = response.json().get("total_clicks")
-        return clicks_count
-    except requests.exceptions.HTTPError:
-        print("Ошибка введенного url, проверьте корректность ссылки")
+def count_clicks(token, link):
+    parsed_link = urlsplit(link)
+    url = f"https://api-ssl.bitly.com/v4/bitlinks/{parsed_link.netloc+parsed_link.path}/clicks/summary"
+    header = {"Authorization": f"Bearer {token}"}
+    payload = {'unit': 'day', 'units': -1}
+    response = requests.get(url, headers=header, params=payload)
+    response.raise_for_status()
+    clicks_count = response.json().get("total_clicks")
+    return clicks_count
 
 
-def is_bitlink(url=input("Введите ссылку: ")):
+def is_bitlink(token, url):
     parsed_link = urlsplit(url)
-    if parsed_link.scheme != "":
-        link_without_scheme = parsed_link._replace(scheme="").geturl()[2:]
-    else:
-        link_without_scheme = url
-    token = os.getenv("ACCESS_TOKEN")
+    link_without_scheme = parsed_link.netloc+parsed_link.path
     api_url = f"https://api-ssl.bitly.com/v4/bitlinks/{link_without_scheme}"
     header = {"Authorization": f"Bearer {token}"}
     response = requests.get(api_url, headers=header)
-    response_status = response.ok
-    if response_status is True:
-        return count_clicks(url)
-    return shorten_link(url)
+    is_bitlink = response.ok
+    return is_bitlink
+
+
+def main(url=input("Введите ссылку: ")):
+    try:
+        request = requests.get(url)
+        request.raise_for_status()
+        token = os.getenv("BITLY_ACCESS_TOKEN", default=None)
+        check_for_bitlink = is_bitlink(token, url)
+        if check_for_bitlink is True:
+            return print(count_clicks(token, url))
+        return print(shorten_link(token, url))
+    except requests.exceptions.HTTPError:
+        print("Ошибка введенного url, проверьте корректность ссылки")
 
 
 if __name__ == '__main__':
-        print(is_bitlink())
+        main()

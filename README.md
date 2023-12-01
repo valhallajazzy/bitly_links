@@ -17,7 +17,7 @@
 ```console
 $ poetry install
 ```
-Так же требуется в файлe .env обозначить переменную виртульного окружения (ACCESS_TOKEN)
+Так же требуется в файлe .env обозначить переменную виртульного окружения (BITLY_ACCESS_TOKEN)
 и ввести полученный access_token для допуска к сервисному API
 
 ![Screenshot](https://github.com/valhallajazzy/bitly_links/blob/main/pictures/ACCESS_TOKEN.png)
