@@ -9,6 +9,7 @@ packages = [{include = "bitly_links"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 requests = "^2.31.0"
+environs = "^9.5.0"
 python-dotenv = "^1.0.0"
 
 
