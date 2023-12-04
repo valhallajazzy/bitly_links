@@ -17,8 +17,8 @@
 ```console
 $ poetry install
 ```
-Так же требуется в файлe .env обозначить переменную виртульного окружения (BITLY_ACCESS_TOKEN)
-и ввести полученный access_token для допуска к сервисному API
+Так же требуется создать в корневой директории проекта файл .env, обозначить в нем переменную виртульного окружения 
+(BITLY_ACCESS_TOKEN) и ввести полученный access_token для допуска к сервисному API
 
 ![Screenshot](https://github.com/valhallajazzy/bitly_links/blob/main/pictures/ACCESS_TOKEN.png)
 
@@ -27,6 +27,6 @@ $ poetry install
 В терминале, в корневой папке директории запустите скрипт:
 
 ```console
-$ python3 main.py
+$ python3 main.py <Ваша ссылка>
 ```
-![Screenshot](https://github.com/valhallajazzy/bitly_links/blob/main/pictures/RUNNING_THE_SCRIPT.png)
+![Screenshot]()

@@ -1,5 +1,6 @@
 import os
 from urllib.parse import urlsplit
+import argparse
 
 import requests
 from dotenv import load_dotenv
@@ -40,7 +41,7 @@ def main(url):
     try:
         token = os.environ["BITLY_ACCESS_TOKEN"]
         if is_bitlink(token, url):
-            print(count_clicks(token, url))
+            print("Количество переходов по ссылке битли: ", count_clicks(token, url))
         else:
             print(shorten_link(token, url))
     except requests.exceptions.HTTPError:
@@ -48,5 +49,7 @@ def main(url):
 
 
 if __name__ == '__main__':
-        url = input("Введите ссылку: ")
-        main(url)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("link", help='Для преобразования введите ссылку')
+    args = parser.parse_args()
+    main(args.link)
