@@ -29,4 +29,4 @@ $ poetry install
 ```console
 $ python3 main.py <Ваша ссылка>
 ```
-![Screenshot]()
+![Screenshot](https://github.com/valhallajazzy/bitly_links/blob/main/pictures/example.png)
