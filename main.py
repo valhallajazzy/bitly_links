@@ -36,20 +36,20 @@ def is_bitlink(token, url):
     return response.ok
 
 
-def main(url):
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("link", help='Для преобразования введите ссылку')
+    args = parser.parse_args()
     load_dotenv()
     try:
         token = os.environ["BITLY_ACCESS_TOKEN"]
-        if is_bitlink(token, url):
-            print("Количество переходов по ссылке битли: ", count_clicks(token, url))
+        if is_bitlink(token, args.link):
+            print("Количество переходов по ссылке битли: ", count_clicks(token, args.link))
         else:
-            print(shorten_link(token, url))
+            print(shorten_link(token, args.link))
     except requests.exceptions.HTTPError:
         print("Ошибка введенного url, проверьте корректность ссылки")
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument("link", help='Для преобразования введите ссылку')
-    args = parser.parse_args()
-    main(args.link)
+    main()
